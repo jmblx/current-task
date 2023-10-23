@@ -1,0 +1,11 @@
+django-debug-toolbar==4.2.0
+flake8==6.1.0
+flake8-import-order==0.18.2
+flake8-quotes==3.3.2
+parameterized==0.9.0
+pep8-naming==0.13.3
+python-dotenv==1.0.0
+transliterate==1.10.2
+flake8-dunder-all
+flake8-commas
+flake8-print

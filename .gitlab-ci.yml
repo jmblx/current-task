@@ -1,0 +1,35 @@
+stages:
+  - flake8
+  - black-formatting
+  - testing
+
+flake8:
+  stage: flake8-linting
+  image: registry.gitlab.com/pipeline-components/flake8:latest
+  only:
+   - push
+   - merge_requests
+  before_script:
+    - pip install -r requirements/test.txt
+  script:
+    - flake8 .
+
+black:
+  stage: black-formatting
+  image: registry.gitlab.com/pipeline-components/black:latest
+  only:
+    - push
+    - merge_requests
+  before_script:
+    - pip install black
+  script:
+    - black --check --diff --config pyproject.toml .
+
+django-tests:
+  stage: testing
+  image: python:3.10
+  before_script:
+    - pip install -r requirements/dev.txt
+  script:
+    - cd lyceum
+    - python manage.py test
